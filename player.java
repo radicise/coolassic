@@ -648,6 +648,10 @@ public class player implements Runnable {
 										+ "/deop <name>\n");
 								break;
 							case ("solid"):
+								if (!solid((byte) 0)[1]) {
+									level.msg(id, "you do not have access to this command");
+									break;
+								}
 								tb = id;
 								if (argnum > 1) {
 									if (commands[2].equals("@s")) {
@@ -899,7 +903,7 @@ public class player implements Runnable {
 		catch(Exception exc){
 			System.out.println("player error occured: " + exc);
 		}
-	    finally {
+		finally {
 			System.out.println("Program ending...");
 			System.exit(0);
 	    }

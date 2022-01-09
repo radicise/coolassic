@@ -100,8 +100,7 @@ public class level {
 		for (byte i = 0; i < 64; i++) {
 			mesn[i+2] = nma[i];
 		}
-		String jtg = new String(" joined the game");
-		byte[] jtgb = jtg.getBytes(StandardCharsets.US_ASCII);
+		byte[] jtgb = new String(" joined the game").getBytes(StandardCharsets.US_ASCII);
 		for (byte i = 0; (i < (64 - pleng)) && (i < 16); i++) {
 			mesn[pleng + i + 2] = jtgb[i];
 		}
@@ -234,6 +233,16 @@ public class level {
 	public static void broadcast(byte tplyid, byte[] message, byte fplyid) {
 		byte[] mess = new byte[66];
 		try {
+			boolean ne = false;
+			for (byte i = 2; i < 66; i++) {
+				if (message[i] != 0x20) {
+					ne = true;
+					break;
+				}
+			}
+			if (!ne) {
+				message[65] = 46;
+			}
 			byte pleng = 0;
 			if (fplyid != -1) {
 				for (byte t = 63; t>=0; t--) {
@@ -268,6 +277,7 @@ public class level {
 			}
 			mess[0] = 0x0d;
 			mess[1] = fplyid;
+			byte[] finms = new byte[64];
 			if (fplyid != -1 ) {
 				for (byte t = (byte) (pleng + 2); t<64; t++) {
 					mess[t + 2] = message[t - pleng];
@@ -277,6 +287,19 @@ public class level {
 				for (byte t = (byte) (pleng + 2); t<66; t++) {
 					mess[t] = message[t];
 				}
+			}
+			for (byte i = 0; i < 64; i++) {
+				finms[i] = mess[i + 2];
+			}
+			char ident = ':';
+			if (tplyid == -1) {
+				if (fplyid != -1) {
+					ident = player.plist[fplyid].getic();
+				}
+				else {
+					ident = '{';
+				}
+				player.messlg.append(ident + "  "+ new String(finms, StandardCharsets.US_ASCII));
 			}
 			if (tplyid == -1) {
 				for (byte t = 0; t < (player.plamnt + 1); t++) {

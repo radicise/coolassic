@@ -1178,7 +1178,7 @@ public class player implements Runnable {
 			if (true) {
 				role.make("op", (short) 10000, 1);
 				role.make("muted", (short) 0, 2);
-				gmotto = new String("029d841198a9a400a949beda04eb460614bd46ec0dff01cdd21252d8f9b3c10c");
+				gmotto = new String("!aSoapImpressionOfHisWifeWhichHeAteAndDonatedToTheNationalTrust!");
 				gservername = new String("testingServer                                                   ");
 				level.lvl = new level(1, 2, 3);
 				level.lvl.genfloor((byte) 0x01);

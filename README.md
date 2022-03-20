@@ -1,5 +1,5 @@
 # coolassic
-A Minecraft Classic multiplayer server written in Java because why not 
+A badly-written, unfinished, and abandoned Minecraft Classic multiplayer server written in Java because why not 
 As of UTC202111202006, it can only handle up 127 clients with a source-specified maximum, all players are op by default, and the following commands exist: 
 
 ```/tpa <name>|@s|@a <name>|@s (op only)
